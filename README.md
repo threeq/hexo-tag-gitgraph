@@ -198,4 +198,4 @@ release_200.merge(master, tag("v2.0.0","Release v2.0.0 tagged"))
 
 ```
 
-[Demo](blog.threeq.me/2016/12/13/hexo/hexo-tag-gitgraph/)
+[Demo](http://blog.threeq.me/2016/12/13/hexo/hexo-tag-gitgraph/)
