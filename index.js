@@ -1,10 +1,6 @@
 
 'use strict';
 
-var fs = require('hexo-fs');
-var Promise = require('bluebird');
-var process = require('child_process');
-
 function guid() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
         var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
@@ -15,61 +11,64 @@ function guid() {
 
 hexo.extend.tag.register('gitgraph', function (args, content) {
 
-    return new Promise(function (resolve, reject) {
-        var uuid = guid();
-        var canvas = '<canvas id="'+uuid+'"></canvas>';
-        var jscode = '<script> \
-        (function (win) { \
-            if(!win.graphConfig) { \
-                win.graphConfig = new GitGraph.Template({ \
-                    branch: { \
-                        color: "#000000", \
-                        lineWidth: 3, \
-                        spacingX: 60, \
-                        mergeStyle: "straight", \
-                        showLabel: true,          \
-                        labelFont: "normal 10pt Arial" \
-                    },\
-                    commit: {\
-                        spacingY: -30, \
-                        dot: { \
-                            size: 8,\
-                            strokeColor: "#000000",\
-                            strokeWidth: 4\
-                        },\
-                        tag: {\
-                            font: "normal 10pt Arial",\
-                            color: "yellow"\
-                        },\
-                        message: {\
-                            color: "black",\
-                            font: "normal 12pt Arial",\
-                            displayAuthor: false,\
-                            displayBranch: false,\
-                            displayHash: false,\
-                        }\
-                    },\
-                    arrow: {\
-                        size: 8,\
-                        offset: 3\
-                    }\
-                });\
-            } \
+    var uuid = guid();
+    var canvas = '<div style="overflow-x: auto;"><canvas id="'+uuid+'"></canvas></div>';
+    var jscode = '<script> \n'+
+'    (function (win) { \n'+
+'        if(!win.graphConfig) { \n'+
+'            win.graphConfig = new GitGraph.Template({ \n'+
+'                branch: { \n'+
+'                    color: "#000000", \n'+
+'                    lineWidth: 3, \n'+
+'                    spacingX: 60, \n'+
+'                    mergeStyle: "straight", \n'+
+'                    showLabel: true,          \n'+
+'                    labelFont: "normal 10pt Arial" \n'+
+'                },\n'+
+'                commit: {\n'+
+'                    spacingY: -30, \n'+
+'                    dot: { \n'+
+'                        size: 8,\n'+
+'                        strokeColor: "#000000",\n'+
+'                        strokeWidth: 4\n'+
+'                    },\n'+
+'                    tag: {\n'+
+'                        font: "normal 10pt Arial",\n'+
+'                        color: "yellow"\n'+
+'                    },\n'+
+'                    message: {\n'+
+'                        color: "black",\n'+
+'                        font: "normal 12pt Arial",\n'+
+'                        displayAuthor: false,\n'+
+'                        displayBranch: false,\n'+
+'                        displayHash: false,\n'+
+'                    }\n'+
+'                },\n'+
+'                arrow: {\n'+
+'                    size: 8,\n'+
+'                    offset: 3\n'+
+'                }\n'+
+'            });\n'+
+'        } \n'+
+'        var gitgraph = new GitGraph({ \n'+
+'          elementId:"'+uuid+'", \n'+
+'          template: win.graphConfig, \n'+
+'          mode: "extended", \n'+
+'          orientation: "vertical" \n'+
+'        }); \n'+
+'        '+content+' \n'+
+'    }(window)); \n'+
+'    </script>';
 
-            var gitgraph = new GitGraph({ \
-              elementId:'+uuid+', \
-              template: win.graphConfig, \
-              mode: "extended", \
-              orientation: "vertical" \
-            }); \
-            '+content+' \
-        }(window)); \
-        </script>'
-        resolve(canvas+jscode);
-    }).then(function (data) {
-            return data;
-        }, function (err) {
-            return err;
-        });
+    return canvas+jscode;
 
-}, {async: true, ends: true});
+    // return new Promise(function (resolve, reject) {
+    //
+    //     resolve(canvas+jscode);
+    // }).then(function (data) {
+    //         return data;
+    //     }, function (err) {
+    //         return err;
+    //     });
+
+}, {async: false, ends: true});
