@@ -1,0 +1,29 @@
+{
+  "name": "hexo-tag-gitgraph",
+  "version": "1.0.0",
+  "description": "hexo tag gitgraph",
+  "author": {
+    "name": "threeq",
+    "email": "448987046@qq.com",
+    "url": "http://threeq.github.io/"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/threeq/hexo-tag-gitgraph.git"
+  },
+  "bugs": {
+    "url": "https://github.com/threeq/hexo-tag-gitgraph/issues"
+  },
+  "readmeFilename": "README.md",
+  "keywords": [
+    "tag",
+    "gitgraph",
+    "hexo"
+  ],
+  "homepage": "http://threeq.github.io/hexo-tag-gitgraph",
+  "_id": "hexo-tag-gitgraph@1.0.0",
+  "_from": "hexo-tag-gitgraph@",
+  "dependencies": {
+  }
+}
