@@ -9,8 +9,12 @@ hexo.extend.tag.register('gitgraph', function(args, content) {
         name = uuid();
     }
 
-    var directory = "./source"
-    var file_path = "/image/auto-generate/gitgraph-" + name + ".svg"
+    var directory = "./source";
+    var file_path = "/image/auto-generate/gitgraph-" + name + ".svg";
+
+    if (!fs.existsSync(directory+'/image/auto-generate/')) {
+        fs.mkdirSync(directory+'/image/auto-generate/');
+    }
 
     DrawGraph.drawByGitCmd(directory+file_path, content);
 
