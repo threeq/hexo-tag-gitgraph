@@ -25,5 +25,7 @@
   "_id": "hexo-tag-gitgraph@1.0.0",
   "_from": "hexo-tag-gitgraph@",
   "dependencies": {
+    "canvas": "^1.6.4",
+    "jsdom": "^9.11.0"
   }
 }
