@@ -141,7 +141,7 @@ function drawByGitCmd(file_path, content) {
     var master = gitgraph.branch({
         name: "master",
         column: 0
-    }).commit(message("init repo"));
+    });
 
     var currentBranch = allBranch['master'] = {
         col: 0,
@@ -152,6 +152,11 @@ function drawByGitCmd(file_path, content) {
 
     for (var i = 0; i < cmds.length; i++) {
         var cmd = cmds[i];
+
+        if(i==0 && cmd.action!='commit') {
+            master.commit(message("init repo"));
+        }
+
         if (cmd.action == 'commit') {
             currentBranch.branch.commit(message(cmd.params.msg));
         } else if (cmd.action == 'checkout') {
@@ -214,6 +219,12 @@ function parseCommands(commandsStr) {
 
     for (var i = 0; i < cmdLines.length; i++) {
         var cmdStr = cmdLines[i]
+
+        // 空行处理
+        // 注视处理，不是以 git 开头的命令都认为是注视
+        if(!cmdStr || !cmdStr.replace(/\s/g,'') || !/^git\s+/.test(cmdStr)) {
+            continue;
+        }
 
         if (/\s*git\s*commit.*/.test(cmdStr)) {
             // git commit -am ''
