@@ -222,7 +222,7 @@ function parseCommands(commandsStr) {
 
         // 空行处理
         // 注视处理，不是以 git 开头的命令都认为是注视
-        if(!cmdStr || !cmdStr.replace(/\s/g,'') || !/^git\s+/.test(cmdStr)) {
+        if(!cmdStr || !cmdStr.replace(/\s/g,'') || !/^\s*git\s+/.test(cmdStr)) {
             continue;
         }
 

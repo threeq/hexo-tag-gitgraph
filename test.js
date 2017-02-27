@@ -1,8 +1,6 @@
 var DrawGraph = require('./draw-graph.js');
 
 var content = " \
-git commit -am 'aaaaa' \n\
-git commit -m 'bbbb' \n\
 git checkout -b test \n \
 git checkout -b test1  \n \
 git checkout -b test1 sdfsfa \n \
