@@ -3,9 +3,9 @@
 hexo 博客系统git分支图插件
 
 依赖：
-[gitgraph.js](https://github.com/nicoespeon/gitgraph.js) 库
-[node-cnavas](https://github.com/Automattic/node-canvas) 库
-[jsdom](https://github.com/tmpvar/jsdom) 库
+    [gitgraph.js](https://github.com/nicoespeon/gitgraph.js) 库
+    [node-cnavas](https://github.com/Automattic/node-canvas) 库
+    [jsdom](https://github.com/tmpvar/jsdom) 库
 
 注意：由于 `gitgraph.js` 本身不支持 `node` 环境执行，所以对其源代码有所更改。
 
@@ -60,7 +60,5 @@ git merge test1
 ```
 
 效果：
-
-<img src="https://raw.githubusercontent.com/threeq/hexo-tag-gitgraph/master/test.svg" />
 
 [Demo](http://blog.threeq.me/2016/12/13/hexo/hexo-tag-gitgraph/)
