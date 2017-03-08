@@ -1,5 +1,6 @@
 'use strict';
 
+var fs = require('fs');
 var DrawGraph = require('./draw-graph.js');
 
 hexo.extend.tag.register('gitgraph', function(args, content) {
